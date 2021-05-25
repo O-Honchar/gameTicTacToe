@@ -2,6 +2,7 @@
 
 import './../styles/main.scss';
 import Player from './classPlayer';
+// import checkFirstTurn from './randomizer.js'
 // import random from './randomize';
 
 const player1Input = document.querySelector('#player1');
