@@ -1,0 +1,23 @@
+.players {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: baseline;
+  padding: 1rem;
+  width: 450px;
+}
+
+.players > h3 {
+  width: 100%;
+  padding: $inputs-buttons-font-size;
+  text-align: center;
+}
+
+.players > input {
+  width: 40%;
+  padding: $inputs-buttons-padding;
+  font-size: $inputs-buttons-font-size;
+  font-family: $font-family;
+  font-weight: $inputs-buttons-weight;
+  text-align: center;
+}
