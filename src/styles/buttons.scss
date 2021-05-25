@@ -1,0 +1,13 @@
+.buttons {
+  display: flex;
+
+  justify-content: space-evenly;
+  padding: 2rem;
+  width: 450px;
+}
+
+.button {
+  width: 40%;
+  font-size: $inputs-buttons-font-size;
+  padding: $inputs-buttons-padding;
+}
