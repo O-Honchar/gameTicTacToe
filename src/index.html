@@ -6,5 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body></body>
+  <body>
+    <div class="wrapper">
+      <h1>Tic Tac Toe game</h1>
+      <h2>Rules</h2>
+      <ul>
+        <li>
+          Players are marking by turns the spaces in a 3x3 grid with X or O
+        </li>
+        <li>
+          The player who succeeds in placing three of their marks in a
+          horizontal, vertical, or diagonal row is the winner.
+        </li>
+      </ul>
+
+      <div class="users">
+        <p>Input players name</p>
+        <input type="text" name="" id="" placeholder="Player-1" />
+        <input type="text" name="" id="" placeholder="Player-2" />
+      </div>
+      <div class="buttons">
+        <button type="button">Start</button>
+        <button type="button">Reset</button>
+      </div>
+      <div class="game-field">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+      </div>
+    </div>
+  </body>
 </html>
