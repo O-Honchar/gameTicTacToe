@@ -2,10 +2,20 @@
 'use strict';
 
 export default class {
+    // static active = '';
+
     constructor (name) {
         this._name = name;
         this._score = 0;
         this._sign = '';
+    }
+
+    static setActive(value) {
+        this.active = value;
+    }
+
+    static toggleActive() {
+        this.active = this.active === 'player1' ? 'player2' : 'player1';
     }
 
     get name() {
