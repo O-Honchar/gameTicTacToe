@@ -3,12 +3,11 @@
 import './../styles/main.scss';
 
 import gameFieldDivHandler from './gameField';
-import { Player, player1, player2 } from './classPlayer';
+import { player1, player2 } from './classPlayer';
 // import checkFirstTurn from './randomizer.js'
 // import random from './randomize';
 
-console.log(gameFieldDivHandler);
-
+const gameFieldDiv = document.querySelector('#game-field');
 const player1Input = document.querySelector('#player1');
 const player2Input = document.querySelector('#player2');
 
@@ -22,5 +21,6 @@ function player2InputHandler() {
   console.log('player2: ', player2);
 }
 
+gameFieldDiv.addEventListener('click', gameFieldDivHandler);
 player1Input.addEventListener('change', player1InputHandler);
 player2Input.addEventListener('change', player2InputHandler);

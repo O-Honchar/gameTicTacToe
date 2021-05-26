@@ -1,11 +1,8 @@
-const gameFieldDiv = document.querySelector('#game-field');
+import { Player } from './classPlayer';
 
-const gameFieldDivHandler = (e) => {
+export default (e) => {
   const cellNumber = e.target.dataset.cell;
   e.target.textContent = 'X';
   console.log(cellNumber);
+  console.log(Player.active);
 };
-
-gameFieldDiv.addEventListener('click', gameFieldDivHandler);
-
-export default gameFieldDivHandler;
