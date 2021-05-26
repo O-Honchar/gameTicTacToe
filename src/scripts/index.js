@@ -2,7 +2,8 @@
 
 import './../styles/main.scss';
 import { Player, player1, player2 } from './classPlayer';
-import checkFirstTurn from './randomizer.js'
+import checkFirstTurn from './randomizer.js';
+import addPlayerSign from './addPlayerSign.js';
 // import random from './randomize';
 
 const player1Input = document.querySelector('#player1');
@@ -23,6 +24,7 @@ function startHandler() {
     const firstTurnPlayer = checkFirstTurn();
     // console.log('firstTurnPlayer: ', firstTurnPlayer);
     Player.setActive(firstTurnPlayer);
+    addPlayerSign(firstTurnPlayer, player1, player2);
     // console.log('Player.active: ', Player.active);
     // Player.toggleActive(player1, player2);
     // console.log('Player.toggleActive: ', Player.active);
