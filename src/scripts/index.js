@@ -1,7 +1,7 @@
 'use strict';
 
 import './../styles/main.scss';
-import {Player, player1, player2} from './classPlayer';
+import { Player, player1, player2 } from './classPlayer';
 // import checkFirstTurn from './randomizer.js'
 // import random from './randomize';
 
