@@ -1,7 +1,7 @@
 // classPlayer
 'use strict';
 
-export default class {
+export class Player {
     // static active = '';
 
     constructor (name) {
@@ -10,12 +10,12 @@ export default class {
         this._sign = '';
     }
 
-    static setActive(value) {
-        this.active = value;
+    static setActive(instance) {
+        this.active = instance;
     }
 
-    static toggleActive() {
-        this.active = this.active === 'player1' ? 'player2' : 'player1';
+    static toggleActive(instance1, instance2) {
+        this.active = this.active === instance1 ? instance2 : instance1;
     }
 
     get name() {
@@ -46,3 +46,6 @@ export default class {
         this._score = 0;
     }
 }
+
+export const player1 = new Player('Player-1');
+export const player2 = new Player('Player-2');

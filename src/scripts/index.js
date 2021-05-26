@@ -1,14 +1,12 @@
 'use strict';
 
 import './../styles/main.scss';
-import Player from './classPlayer';
+import {Player, player1, player2} from './classPlayer';
 // import checkFirstTurn from './randomizer.js'
 // import random from './randomize';
 
 const player1Input = document.querySelector('#player1');
 const player2Input = document.querySelector('#player2');
-const player1 = new Player(player1Input.placeholder.trim());
-const player2 = new Player(player2Input.placeholder.trim());
 
 function player1InputHandler() {
     player1.name = player1Input.value.trim();
