@@ -21,3 +21,7 @@
   font-weight: $inputs-buttons-weight;
   text-align: center;
 }
+
+.players > .active {
+  background-color: $highlight-color;
+}
