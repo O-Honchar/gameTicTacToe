@@ -7,7 +7,7 @@ import { Player, player1, player2 } from './classPlayer';
 import checkFirstTurn from './randomizer.js';
 import addPlayerSign from './addPlayerSign.js';
 import highlightPlayer from './highlightPlayer.js'
-// import random from './randomize';
+import { resetCellArray, resetField, gameFieldHandler } from './gameField.js';
 
 export const gameFieldDiv = document.querySelector('#game-field');
 export const player1Input = document.querySelector('#player1');
@@ -30,13 +30,11 @@ function player2InputHandler() {
 
 function startHandler() {
   const firstTurnPlayer = checkFirstTurn();
-  // console.log('firstTurnPlayer: ', firstTurnPlayer);
   Player.setActive(firstTurnPlayer);
   addPlayerSign(firstTurnPlayer, player1, player2);
   highlightPlayer(Player.active, player1, player2);
-  // console.log('Player.active: ', Player.active);
-  // Player.toggleActive(player1, player2);
-  // console.log('Player.toggleActive: ', Player.active);
+  resetCellArray();
+  resetField();
 }
 
 gameFieldDiv.addEventListener('click', gameFieldHandler);
