@@ -1,0 +1,15 @@
+.score {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  width: 450px;
+}
+
+.score > div {
+  width: 40%;
+  font-size: $score-font-size;
+  font-family: $font-family;
+  font-weight: $inputs-buttons-weight;
+  text-align: center;
+}
