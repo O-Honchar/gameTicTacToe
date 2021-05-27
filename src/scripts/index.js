@@ -2,7 +2,7 @@
 
 import './../styles/main.scss';
 
-import gameFieldDivHandler from './gameField';
+import { gameFieldHandler } from './gameField';
 import { Player, player1, player2 } from './classPlayer';
 import checkFirstTurn from './randomizer.js';
 import addPlayerSign from './addPlayerSign.js';
@@ -33,7 +33,7 @@ function startHandler() {
   // console.log('Player.toggleActive: ', Player.active);
 }
 
-gameFieldDiv.addEventListener('click', gameFieldDivHandler);
+gameFieldDiv.addEventListener('click', gameFieldHandler);
 player1Input.addEventListener('change', player1InputHandler);
 player2Input.addEventListener('change', player2InputHandler);
 start.addEventListener('click', startHandler);
