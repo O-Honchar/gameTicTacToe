@@ -6,11 +6,12 @@ import gameFieldDivHandler from './gameField';
 import { Player, player1, player2 } from './classPlayer';
 import checkFirstTurn from './randomizer.js';
 import addPlayerSign from './addPlayerSign.js';
+import highlightPlayer from './highlightPlayer.js'
 // import random from './randomize';
 
-const gameFieldDiv = document.querySelector('#game-field');
-const player1Input = document.querySelector('#player1');
-const player2Input = document.querySelector('#player2');
+export const gameFieldDiv = document.querySelector('#game-field');
+export const player1Input = document.querySelector('#player1');
+export const player2Input = document.querySelector('#player2');
 const start = document.querySelector('#start');
 
 function player1InputHandler() {
@@ -28,6 +29,7 @@ function startHandler() {
   // console.log('firstTurnPlayer: ', firstTurnPlayer);
   Player.setActive(firstTurnPlayer);
   addPlayerSign(firstTurnPlayer, player1, player2);
+  highlightPlayer(Player.active, player1, player2);
   // console.log('Player.active: ', Player.active);
   // Player.toggleActive(player1, player2);
   // console.log('Player.toggleActive: ', Player.active);
