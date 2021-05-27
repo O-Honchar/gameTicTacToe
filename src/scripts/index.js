@@ -2,8 +2,7 @@
 
 import './../styles/main.scss';
 
-import { gameFieldHandler } from './gameField';
-import { Player, player1, player2 } from './classPlayer';
+import { Player, player1, player2 } from './classPlayer.js';
 import checkFirstTurn from './randomizer.js';
 import addPlayerSign from './addPlayerSign.js';
 import highlightPlayer from './highlightPlayer.js'
@@ -13,6 +12,7 @@ export const gameFieldDiv = document.querySelector('#game-field');
 export const player1Input = document.querySelector('#player1');
 export const player2Input = document.querySelector('#player2');
 const start = document.querySelector('#start');
+const reset = document.querySelector('#reset');
 
 export default function returnGameFieldDiv() {
   return gameFieldDiv;
@@ -33,6 +33,13 @@ function startHandler() {
   Player.setActive(firstTurnPlayer);
   addPlayerSign(firstTurnPlayer, player1, player2);
   highlightPlayer(Player.active, player1, player2);
+}
+
+function resetHandler() {
+  Player.setActive({});
+  player1.resetScore();
+  player2.resetScore();
+  highlightPlayer(Player.active, player1, player2);
   resetCellArray();
   resetField();
 }
@@ -41,3 +48,4 @@ gameFieldDiv.addEventListener('click', gameFieldHandler);
 player1Input.addEventListener('change', player1InputHandler);
 player2Input.addEventListener('change', player2InputHandler);
 start.addEventListener('click', startHandler);
+reset.addEventListener('click', resetHandler);
