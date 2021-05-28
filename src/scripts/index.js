@@ -14,10 +14,6 @@ export const player2Input = document.querySelector('#player2');
 const start = document.querySelector('#start');
 const reset = document.querySelector('#reset');
 
-export default function returnGameFieldDiv() {
-  return gameFieldDiv;
-}
-
 function player1InputHandler() {
   player1.name = player1Input.value.trim();
   console.log('player1: ', player1);
