@@ -1,4 +1,4 @@
-//highlight.js
+// highlight.js
 'use strict';
 
 export default (highlight, ...args) => {    
