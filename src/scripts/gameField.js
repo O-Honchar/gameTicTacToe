@@ -31,10 +31,12 @@ export const resetField = () => {
   });
 };
 
-const outputVictoryPlayer = () => {
+const victoryHandler = () => {
   console.log(
     `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
   );
+  Player.active.increaseScore();
+  console.log(Player.active.score);
 };
 
 const checkHorizontalVictory = () => {
@@ -45,7 +47,7 @@ const checkHorizontalVictory = () => {
       cellArray[i]
     ) {
       console.log(`we find victory on row # ${i / gameFieldSideLength}`);
-      outputVictoryPlayer();
+      victoryHandler();
       break;
     }
   }
@@ -59,7 +61,7 @@ const checkVerticalVictory = () => {
       cellArray[i]
     ) {
       console.log(`we find victory on col # ${i}`);
-      outputVictoryPlayer();
+      victoryHandler();
       break;
     }
   }
@@ -71,7 +73,7 @@ const checkFirstDiagonalVictory = () => {
     cellArray[0]
   ) {
     console.log(`we find victory on diag # lt-rb`);
-    outputVictoryPlayer();
+    victoryHandler();
   }
 };
 const checkSecondDiagonalVictory = () => {
@@ -81,7 +83,7 @@ const checkSecondDiagonalVictory = () => {
     cellArray[rightTopItemNumber]
   ) {
     console.log(`we find victory on diag # rt-lb`);
-    outputVictoryPlayer();
+    victoryHandler();
   }
 };
 
