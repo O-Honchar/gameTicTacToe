@@ -1,5 +1,6 @@
 import { Player, player1, player2 } from './classPlayer';
 import { gameFieldDiv } from './index';
+import * as displayResults from './displayResults';
 
 const cellArray = [];
 const cellArrayLength = 9,
@@ -37,6 +38,7 @@ const victoryHandler = () => {
   );
   Player.active.increaseScore();
   console.log(Player.active.score);
+  displayResults.winning();
 };
 
 const checkHorizontalVictory = () => {
