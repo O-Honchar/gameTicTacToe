@@ -6,11 +6,15 @@ import { Player, player1, player2 } from './classPlayer.js';
 import checkFirstTurn from './randomizer.js';
 import addPlayerSign from './addPlayerSign.js';
 import highlightPlayer from './highlightPlayer.js';
+import displayScore from './displayScore.js';
 import { resetCellArray, resetField, gameFieldHandler } from './gameField.js';
 
 export const gameFieldDiv = document.querySelector('#game-field');
 export const player1Input = document.querySelector('#player1');
 export const player2Input = document.querySelector('#player2');
+export const player1Score = document.querySelector('#player1Score');
+export const player2Score = document.querySelector('#player2Score');
+
 const numberOfPlayers = 2;
 const start = document.querySelector('#start');
 const reset = document.querySelector('#reset');
@@ -39,6 +43,7 @@ function resetHandler() {
   player1.resetScore();
   player2.resetScore();
   highlightPlayer(Player.active, player1, player2);
+  displayScore();
   resetCellArray();
   resetField();
 }
