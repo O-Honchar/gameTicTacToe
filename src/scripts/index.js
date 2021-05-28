@@ -11,6 +11,7 @@ import { resetCellArray, resetField, gameFieldHandler } from './gameField.js';
 export const gameFieldDiv = document.querySelector('#game-field');
 export const player1Input = document.querySelector('#player1');
 export const player2Input = document.querySelector('#player2');
+const numberOfPlayers = 2;
 const start = document.querySelector('#start');
 const reset = document.querySelector('#reset');
 
@@ -25,7 +26,7 @@ function player2InputHandler() {
 }
 
 function startHandler() {
-  const firstTurnPlayer = checkFirstTurn();
+  const firstTurnPlayer = checkFirstTurn(numberOfPlayers);
   Player.setActive(firstTurnPlayer);
   addPlayerSign(firstTurnPlayer, player1, player2);
   highlightPlayer(Player.active, player1, player2);
