@@ -5,7 +5,7 @@ import './../styles/main.scss';
 import { Player, player1, player2 } from './classPlayer.js';
 import checkFirstTurn from './randomizer.js';
 import addPlayerSign from './addPlayerSign.js';
-import highlightPlayer from './highlightPlayer.js'
+import highlightPlayer from './highlightPlayer.js';
 import { resetCellArray, resetField, gameFieldHandler } from './gameField.js';
 
 export const gameFieldDiv = document.querySelector('#game-field');
@@ -13,10 +13,6 @@ export const player1Input = document.querySelector('#player1');
 export const player2Input = document.querySelector('#player2');
 const start = document.querySelector('#start');
 const reset = document.querySelector('#reset');
-
-export default function returnGameFieldDiv() {
-  return gameFieldDiv;
-}
 
 function player1InputHandler() {
   player1.name = player1Input.value.trim();
