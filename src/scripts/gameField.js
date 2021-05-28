@@ -3,8 +3,10 @@ import { gameFieldDiv } from './index';
 
 const cellArray = [];
 const cellArrayLength = 9,
-  gameFieldSideLength = 3;
-// cellArray.length = cellArrayLength;
+  gameFieldSideLength = 3,
+  gameFieldSideDoubleLength = 6,
+  rightTopItemNumber = 2,
+  centralItemNumber = 4;
 
 const addSignToArr = (cellNum, sign) => {
   if (!cellArray[cellNum - 1]) {
@@ -14,7 +16,6 @@ const addSignToArr = (cellNum, sign) => {
 
 const addSignToCell = (e, cellNum, sign) => {
   if (!cellArray[cellNum - 1]) {
-    console.log('addSignToCell is clicked');
     e.target.textContent = `${sign}`;
   }
 };
@@ -30,48 +31,70 @@ export const resetField = () => {
   });
 };
 
-const checkResult = () => {
-  // ================== horizontally
+const outputVictoryPlayer = () => {
+  console.log(
+    `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
+  );
+};
+
+const checkHorizontalVictory = () => {
   for (let i = 0; i < cellArrayLength; i = i + gameFieldSideLength) {
     if (
       cellArray[i] === cellArray[i + 1] &&
-      cellArray[i + 1] === cellArray[i + 2] &&
-      cellArray[i] === cellArray[i + 2] &&
+      cellArray[i + 1] === cellArray[i + rightTopItemNumber] &&
       cellArray[i]
     ) {
       console.log(`we find victory on row # ${i / gameFieldSideLength}`);
-      console.log(
-        `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
-      );
+      outputVictoryPlayer();
       break;
     }
   }
-
-  // ================== vertically
+};
+const checkVerticalVictory = () => {
   for (let i = 0; i < gameFieldSideLength; i++) {
     if (
-      cellArray[i] === cellArray[i + 3] &&
-      cellArray[i + 3] === cellArray[i + 6] &&
-      cellArray[i] === cellArray[i + 6] &&
+      cellArray[i] === cellArray[i + gameFieldSideLength] &&
+      cellArray[i + gameFieldSideLength] ===
+        cellArray[i + gameFieldSideDoubleLength] &&
       cellArray[i]
     ) {
       console.log(`we find victory on col # ${i}`);
-      console.log(
-        `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
-      );
+      outputVictoryPlayer();
       break;
     }
   }
+};
+const checkFirstDiagonalVictory = () => {
+  if (
+    cellArray[0] === cellArray[centralItemNumber] &&
+    cellArray[0] === cellArray[cellArrayLength - 1] &&
+    cellArray[0]
+  ) {
+    console.log(`we find victory on diag # lt-rb`);
+    outputVictoryPlayer();
+  }
+};
+const checkSecondDiagonalVictory = () => {
+  if (
+    cellArray[rightTopItemNumber] === cellArray[centralItemNumber] &&
+    cellArray[rightTopItemNumber] === cellArray[gameFieldSideDoubleLength] &&
+    cellArray[rightTopItemNumber]
+  ) {
+    console.log(`we find victory on diag # rt-lb`);
+    outputVictoryPlayer();
+  }
+};
 
-  // ================== diagonally
+const checkResult = () => {
+  checkHorizontalVictory();
+  checkVerticalVictory();
+  checkFirstDiagonalVictory();
+  checkSecondDiagonalVictory();
 };
 
 export const gameFieldHandler = (e) => {
   const sign = Player.active.sign;
   const cellNumber = e.target.dataset.cell;
-
-  console.log(cellArray);
-
   addSignToCell(e, cellNumber, sign);
   addSignToArr(cellNumber, sign);
   checkResult();
