@@ -8,12 +8,14 @@ import addPlayerSign from './addPlayerSign.js';
 import highlightPlayer from './highlightPlayer.js';
 import displayScore from './displayScore.js';
 import { resetCellArray, resetField, gameFieldHandler } from './gameField.js';
+import * as displayResults from './displayResults.js';
 
 export const gameFieldDiv = document.querySelector('#game-field');
 export const player1Input = document.querySelector('#player1');
 export const player2Input = document.querySelector('#player2');
 export const player1Score = document.querySelector('#player1Score');
 export const player2Score = document.querySelector('#player2Score');
+export const results = document.querySelector('#results');
 
 const numberOfPlayers = 2;
 const start = document.querySelector('#start');
@@ -21,12 +23,10 @@ const reset = document.querySelector('#reset');
 
 function player1InputHandler() {
   player1.name = player1Input.value.trim();
-  console.log('player1: ', player1);
 }
 
 function player2InputHandler() {
   player2.name = player2Input.value.trim();
-  console.log('player2: ', player2);
 }
 
 function startHandler() {
@@ -36,6 +36,7 @@ function startHandler() {
   highlightPlayer(Player.active, player1, player2);
   resetCellArray();
   resetField();
+  displayResults.reset();
 }
 
 function resetHandler() {
@@ -46,6 +47,7 @@ function resetHandler() {
   displayScore();
   resetCellArray();
   resetField();
+  displayResults.reset();
 }
 
 gameFieldDiv.addEventListener('click', gameFieldHandler);
