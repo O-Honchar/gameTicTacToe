@@ -35,11 +35,11 @@ export const resetField = () => {
 };
 
 const victoryHandler = () => {
-  console.log(
-    `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
-  );
+  // console.log(
+  //   `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
+  // );
   Player.active.increaseScore();
-  console.log(Player.active.score);
+  gameFieldDiv.removeEventListener('click', gameFieldHandler);
   displayScore();
   displayResults.winning();
 };
