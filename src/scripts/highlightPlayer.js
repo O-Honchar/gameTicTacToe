@@ -1,4 +1,4 @@
-//highlightPlayer.js
+// highlightPlayer.js
 'use strict';
 
 import highlight from './highlight.js';
