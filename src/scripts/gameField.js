@@ -50,7 +50,6 @@ const checkResult = () => {
   }
 
   // ================== vertically
-  console.log('========================');
   for (let i = 0; i < gameFieldSideLength; i++) {
     if (
       cellArray[i] === cellArray[i + 3] &&
