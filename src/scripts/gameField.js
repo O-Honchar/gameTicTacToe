@@ -4,7 +4,7 @@ import { gameFieldDiv } from './index';
 const cellArray = [];
 const cellArrayLength = 9,
   gameFieldSideLength = 3;
-cellArray.length = cellArrayLength;
+// cellArray.length = cellArrayLength;
 
 const addSignToArr = (cellNum, sign) => {
   if (!cellArray[cellNum - 1]) {
@@ -14,15 +14,13 @@ const addSignToArr = (cellNum, sign) => {
 
 const addSignToCell = (e, cellNum, sign) => {
   if (!cellArray[cellNum - 1]) {
+    console.log('addSignToCell is clicked');
     e.target.textContent = `${sign}`;
   }
 };
 
 export const resetCellArray = () => {
   cellArray.length = 0;
-  for (let i = 0; i < cellArrayLength; i++) {
-    cellArray.push(i);
-  }
 };
 
 export const resetField = () => {
@@ -66,13 +64,13 @@ const checkResult = () => {
   }
 
   // ================== diagonally
-
-  console.log(cellArray);
 };
 
 export const gameFieldHandler = (e) => {
   const sign = Player.active.sign;
   const cellNumber = e.target.dataset.cell;
+
+  console.log(cellArray);
 
   addSignToCell(e, cellNumber, sign);
   addSignToArr(cellNumber, sign);
