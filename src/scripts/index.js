@@ -29,6 +29,8 @@ function startHandler() {
   Player.setActive(firstTurnPlayer);
   addPlayerSign(firstTurnPlayer, player1, player2);
   highlightPlayer(Player.active, player1, player2);
+  resetCellArray();
+  resetField();
 }
 
 function resetHandler() {
