@@ -1,8 +1,12 @@
 import { Player, player1, player2 } from './classPlayer';
 import { gameFieldDiv } from './index';
-// const gameFieldDiv = document.querySelector('#game-field');
 
 const cellArray = [];
+const cellArrayLength = 9,
+  gameFieldSideLength = 3,
+  gameFieldSideDoubleLength = 6,
+  rightTopItemNumber = 2,
+  centralItemNumber = 4;
 
 const addSignToArr = (cellNum, sign) => {
   if (!cellArray[cellNum - 1]) {
@@ -27,12 +31,72 @@ export const resetField = () => {
   });
 };
 
+const outputVictoryPlayer = () => {
+  console.log(
+    `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
+  );
+};
+
+const checkHorizontalVictory = () => {
+  for (let i = 0; i < cellArrayLength; i = i + gameFieldSideLength) {
+    if (
+      cellArray[i] === cellArray[i + 1] &&
+      cellArray[i + 1] === cellArray[i + rightTopItemNumber] &&
+      cellArray[i]
+    ) {
+      console.log(`we find victory on row # ${i / gameFieldSideLength}`);
+      outputVictoryPlayer();
+      break;
+    }
+  }
+};
+const checkVerticalVictory = () => {
+  for (let i = 0; i < gameFieldSideLength; i++) {
+    if (
+      cellArray[i] === cellArray[i + gameFieldSideLength] &&
+      cellArray[i + gameFieldSideLength] ===
+        cellArray[i + gameFieldSideDoubleLength] &&
+      cellArray[i]
+    ) {
+      console.log(`we find victory on col # ${i}`);
+      outputVictoryPlayer();
+      break;
+    }
+  }
+};
+const checkFirstDiagonalVictory = () => {
+  if (
+    cellArray[0] === cellArray[centralItemNumber] &&
+    cellArray[0] === cellArray[cellArrayLength - 1] &&
+    cellArray[0]
+  ) {
+    console.log(`we find victory on diag # lt-rb`);
+    outputVictoryPlayer();
+  }
+};
+const checkSecondDiagonalVictory = () => {
+  if (
+    cellArray[rightTopItemNumber] === cellArray[centralItemNumber] &&
+    cellArray[rightTopItemNumber] === cellArray[gameFieldSideDoubleLength] &&
+    cellArray[rightTopItemNumber]
+  ) {
+    console.log(`we find victory on diag # rt-lb`);
+    outputVictoryPlayer();
+  }
+};
+
+const checkResult = () => {
+  checkHorizontalVictory();
+  checkVerticalVictory();
+  checkFirstDiagonalVictory();
+  checkSecondDiagonalVictory();
+};
+
 export const gameFieldHandler = (e) => {
   const sign = Player.active.sign;
   const cellNumber = e.target.dataset.cell;
-
   addSignToCell(e, cellNumber, sign);
   addSignToArr(cellNumber, sign);
-
+  checkResult();
   Player.toggleActive(player1, player2);
 };
