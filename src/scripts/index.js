@@ -37,6 +37,7 @@ function startHandler() {
   resetCellArray();
   resetField();
   displayResults.reset();
+  gameFieldDiv.addEventListener('click', gameFieldHandler);
 }
 
 function resetHandler() {
@@ -50,7 +51,6 @@ function resetHandler() {
   displayResults.reset();
 }
 
-gameFieldDiv.addEventListener('click', gameFieldHandler);
 player1Input.addEventListener('change', player1InputHandler);
 player2Input.addEventListener('change', player2InputHandler);
 start.addEventListener('click', startHandler);

@@ -1,5 +1,7 @@
 import { Player, player1, player2 } from './classPlayer';
 import { gameFieldDiv } from './index';
+import displayScore from './displayScore';
+import * as displayResults from './displayResults';
 
 const cellArray = [];
 const cellArrayLength = 9,
@@ -7,6 +9,7 @@ const cellArrayLength = 9,
   gameFieldSideDoubleLength = 6,
   rightTopItemNumber = 2,
   centralItemNumber = 4;
+let movesNumber = 0;
 
 const addSignToArr = (cellNum, sign) => {
   if (!cellArray[cellNum - 1]) {
@@ -31,10 +34,14 @@ export const resetField = () => {
   });
 };
 
-const outputVictoryPlayer = () => {
-  console.log(
-    `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
-  );
+const victoryHandler = () => {
+  // console.log(
+  //   `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
+  // );
+  Player.active.increaseScore();
+  gameFieldDiv.removeEventListener('click', gameFieldHandler);
+  displayScore();
+  displayResults.winning();
 };
 
 const checkHorizontalVictory = () => {
@@ -45,7 +52,7 @@ const checkHorizontalVictory = () => {
       cellArray[i]
     ) {
       console.log(`we find victory on row # ${i / gameFieldSideLength}`);
-      outputVictoryPlayer();
+      victoryHandler();
       break;
     }
   }
@@ -59,7 +66,7 @@ const checkVerticalVictory = () => {
       cellArray[i]
     ) {
       console.log(`we find victory on col # ${i}`);
-      outputVictoryPlayer();
+      victoryHandler();
       break;
     }
   }
@@ -71,7 +78,7 @@ const checkFirstDiagonalVictory = () => {
     cellArray[0]
   ) {
     console.log(`we find victory on diag # lt-rb`);
-    outputVictoryPlayer();
+    victoryHandler();
   }
 };
 const checkSecondDiagonalVictory = () => {
@@ -81,7 +88,12 @@ const checkSecondDiagonalVictory = () => {
     cellArray[rightTopItemNumber]
   ) {
     console.log(`we find victory on diag # rt-lb`);
-    outputVictoryPlayer();
+    victoryHandler();
+  }
+};
+const checkDraw = () => {
+  if (movesNumber === cellArrayLength) {
+    displayResults.draw();
   }
 };
 
@@ -90,6 +102,7 @@ const checkResult = () => {
   checkVerticalVictory();
   checkFirstDiagonalVictory();
   checkSecondDiagonalVictory();
+  checkDraw();
 };
 
 export const gameFieldHandler = (e) => {
@@ -97,6 +110,7 @@ export const gameFieldHandler = (e) => {
   const cellNumber = e.target.dataset.cell;
   addSignToCell(e, cellNumber, sign);
   addSignToArr(cellNumber, sign);
+  movesNumber++;
   checkResult();
   Player.toggleActive(player1, player2);
 };
