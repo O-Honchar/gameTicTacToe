@@ -3,8 +3,8 @@
 
 import { player1, player2 } from './classPlayer';
 
-export default (min = 1, max = 2) => {
-    const rnd = Math.floor(Math.random() * (max - min + 1) ) + min;
+export default (numberOfPlayers) => {
+    const rnd = Math.floor(Math.random() * numberOfPlayers) + 1;
         if (rnd === 1) {
             return player1;
         } else {
