@@ -1,6 +1,7 @@
 import { Player, player1, player2 } from './classPlayer';
 import { gameFieldDiv } from './index';
 import displayScore from './displayScore';
+import highlight from './highlight';
 import highlightPlayer from './highlightPlayer.js';
 import * as displayResults from './displayResults';
 
@@ -32,13 +33,11 @@ export const resetField = () => {
   const NodesArray = [...gameFieldDiv.childNodes];
   NodesArray.forEach((node) => {
     node.innerHTML = '';
+    highlight(false, node);
   });
 };
 
 const victoryHandler = () => {
-  // console.log(
-  //   `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
-  // );
   Player.active.increaseScore();
   gameFieldDiv.removeEventListener('click', gameFieldHandler);
   displayScore();
@@ -80,6 +79,16 @@ const checkFirstDiagonalVictory = () => {
     cellArray[0]
   ) {
     console.log(`we find victory on diag # lt-rb`);
+    //
+    const NodesArray = [...gameFieldDiv.childNodes];
+    console.log(NodesArray[0]);
+    highlight(
+      true,
+      NodesArray[0],
+      NodesArray[centralItemNumber],
+      NodesArray[cellArrayLength - 1]
+    );
+    //
     victoryHandler();
   }
 };
