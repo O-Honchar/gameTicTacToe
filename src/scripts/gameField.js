@@ -14,15 +14,11 @@ const cellArrayLength = 9,
 let movesNumber = 0;
 
 const addSignToArr = (cellNum, sign) => {
-  // if (!cellArray[cellNum - 1]) {
   cellArray[cellNum - 1] = sign;
-  // }
 };
 
 const addSignToCell = (e, sign) => {
-  // if (!cellArray[cellNum - 1]) {
   e.target.textContent = `${sign}`;
-  // }
 };
 
 export const resetCellArray = () => {
