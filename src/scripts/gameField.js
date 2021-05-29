@@ -14,15 +14,15 @@ const cellArrayLength = 9,
 let movesNumber = 0;
 
 const addSignToArr = (cellNum, sign) => {
-  if (!cellArray[cellNum - 1]) {
-    cellArray[cellNum - 1] = sign;
-  }
+  // if (!cellArray[cellNum - 1]) {
+  cellArray[cellNum - 1] = sign;
+  // }
 };
 
-const addSignToCell = (e, cellNum, sign) => {
-  if (!cellArray[cellNum - 1]) {
-    e.target.textContent = `${sign}`;
-  }
+const addSignToCell = (e, sign) => {
+  // if (!cellArray[cellNum - 1]) {
+  e.target.textContent = `${sign}`;
+  // }
 };
 
 export const resetCellArray = () => {
@@ -52,7 +52,6 @@ const checkHorizontalVictory = () => {
       cellArray[i + 1] === cellArray[i + rightTopItemNumber] &&
       cellArray[i]
     ) {
-      console.log(`we find victory on row # ${i / gameFieldSideLength}`);
       const NodesArray = [...gameFieldDiv.childNodes];
       highlight(
         true,
@@ -73,7 +72,13 @@ const checkVerticalVictory = () => {
         cellArray[i + gameFieldSideDoubleLength] &&
       cellArray[i]
     ) {
-      console.log(`we find victory on col # ${i}`);
+      const NodesArray = [...gameFieldDiv.childNodes];
+      highlight(
+        true,
+        NodesArray[i],
+        NodesArray[i + gameFieldSideLength],
+        NodesArray[i + gameFieldSideDoubleLength]
+      );
       victoryHandler();
       break;
     }
@@ -126,10 +131,13 @@ const checkResult = () => {
 };
 
 export const gameFieldHandler = (e) => {
-  if (e.target.hasAttribute('data-cell')) {
+  const cellNumber = e.target.dataset.cell;
+  const cellDataFromArray = cellArray[cellNumber - 1];
+  const checkIsItDataCell = e.target.hasAttribute('data-cell');
+
+  if (checkIsItDataCell && !cellDataFromArray) {
     const sign = Player.active.sign;
-    const cellNumber = e.target.dataset.cell;
-    addSignToCell(e, cellNumber, sign);
+    addSignToCell(e, sign);
     addSignToArr(cellNumber, sign);
     movesNumber++;
     checkResult();
