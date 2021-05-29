@@ -5,7 +5,7 @@ import './../styles/main.scss';
 import { Player, player1, player2 } from './classPlayer.js';
 import checkFirstTurn from './randomizer.js';
 import addPlayerSign from './addPlayerSign.js';
-import highlightPlayer from './highlightPlayer.js'
+import highlightPlayer from './highlightPlayer.js';
 import { resetCellArray, resetField, gameFieldHandler } from './gameField.js';
 
 export const gameFieldDiv = document.querySelector('#game-field');
@@ -38,6 +38,7 @@ function resetHandler() {
   highlightPlayer(Player.active, player1, player2);
   resetCellArray();
   resetField();
+  gameFieldDiv.removeEventListener('click', gameFieldHandler);
 }
 
 gameFieldDiv.addEventListener('click', gameFieldHandler);
