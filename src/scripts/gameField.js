@@ -43,6 +43,7 @@ const victoryHandler = () => {
   gameFieldDiv.removeEventListener('click', gameFieldHandler);
   displayScore();
   displayResults.winning();
+  movesNumber = 0;
 };
 
 const checkHorizontalVictory = () => {
