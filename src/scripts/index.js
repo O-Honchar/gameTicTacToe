@@ -48,6 +48,7 @@ function resetHandler() {
   displayScore();
   resetCellArray();
   resetField();
+  gameFieldDiv.removeEventListener('click', gameFieldHandler);
   displayResults.reset();
 }
 
