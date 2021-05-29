@@ -53,6 +53,13 @@ const checkHorizontalVictory = () => {
       cellArray[i]
     ) {
       console.log(`we find victory on row # ${i / gameFieldSideLength}`);
+      const NodesArray = [...gameFieldDiv.childNodes];
+      highlight(
+        true,
+        NodesArray[i],
+        NodesArray[i + 1],
+        NodesArray[i + rightTopItemNumber]
+      );
       victoryHandler();
       break;
     }
