@@ -1,6 +1,7 @@
 import { Player, player1, player2 } from './classPlayer';
 import { gameFieldDiv } from './index';
 import displayScore from './displayScore';
+import highlightPlayer from './highlightPlayer.js';
 import * as displayResults from './displayResults';
 
 const cellArray = [];
@@ -113,4 +114,5 @@ export const gameFieldHandler = (e) => {
   movesNumber++;
   checkResult();
   Player.toggleActive(player1, player2);
+  highlightPlayer(Player.active, player1, player2);
 };
