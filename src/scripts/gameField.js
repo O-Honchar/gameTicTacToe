@@ -1,6 +1,8 @@
 import { Player, player1, player2 } from './classPlayer';
 import { gameFieldDiv } from './index';
 import displayScore from './displayScore';
+import highlight from './highlight';
+import highlightPlayer from './highlightPlayer.js';
 import * as displayResults from './displayResults';
 
 const cellArray = [];
@@ -12,15 +14,15 @@ const cellArrayLength = 9,
 let movesNumber = 0;
 
 const addSignToArr = (cellNum, sign) => {
-  if (!cellArray[cellNum - 1]) {
-    cellArray[cellNum - 1] = sign;
-  }
+  // if (!cellArray[cellNum - 1]) {
+  cellArray[cellNum - 1] = sign;
+  // }
 };
 
-const addSignToCell = (e, cellNum, sign) => {
-  if (!cellArray[cellNum - 1]) {
-    e.target.textContent = `${sign}`;
-  }
+const addSignToCell = (e, sign) => {
+  // if (!cellArray[cellNum - 1]) {
+  e.target.textContent = `${sign}`;
+  // }
 };
 
 export const resetCellArray = () => {
@@ -31,17 +33,16 @@ export const resetField = () => {
   const NodesArray = [...gameFieldDiv.childNodes];
   NodesArray.forEach((node) => {
     node.innerHTML = '';
+    highlight(false, node);
   });
 };
 
 const victoryHandler = () => {
-  // console.log(
-  //   `Player ${Player.active.name} win! His sign is ${Player.active.sign}`
-  // );
   Player.active.increaseScore();
   gameFieldDiv.removeEventListener('click', gameFieldHandler);
   displayScore();
   displayResults.winning();
+  movesNumber = 0;
 };
 
 const checkHorizontalVictory = () => {
@@ -51,7 +52,13 @@ const checkHorizontalVictory = () => {
       cellArray[i + 1] === cellArray[i + rightTopItemNumber] &&
       cellArray[i]
     ) {
-      console.log(`we find victory on row # ${i / gameFieldSideLength}`);
+      const NodesArray = [...gameFieldDiv.childNodes];
+      highlight(
+        true,
+        NodesArray[i],
+        NodesArray[i + 1],
+        NodesArray[i + rightTopItemNumber]
+      );
       victoryHandler();
       break;
     }
@@ -65,7 +72,13 @@ const checkVerticalVictory = () => {
         cellArray[i + gameFieldSideDoubleLength] &&
       cellArray[i]
     ) {
-      console.log(`we find victory on col # ${i}`);
+      const NodesArray = [...gameFieldDiv.childNodes];
+      highlight(
+        true,
+        NodesArray[i],
+        NodesArray[i + gameFieldSideLength],
+        NodesArray[i + gameFieldSideDoubleLength]
+      );
       victoryHandler();
       break;
     }
@@ -77,7 +90,13 @@ const checkFirstDiagonalVictory = () => {
     cellArray[0] === cellArray[cellArrayLength - 1] &&
     cellArray[0]
   ) {
-    console.log(`we find victory on diag # lt-rb`);
+    const NodesArray = [...gameFieldDiv.childNodes];
+    highlight(
+      true,
+      NodesArray[0],
+      NodesArray[centralItemNumber],
+      NodesArray[cellArrayLength - 1]
+    );
     victoryHandler();
   }
 };
@@ -87,7 +106,13 @@ const checkSecondDiagonalVictory = () => {
     cellArray[rightTopItemNumber] === cellArray[gameFieldSideDoubleLength] &&
     cellArray[rightTopItemNumber]
   ) {
-    console.log(`we find victory on diag # rt-lb`);
+    const NodesArray = [...gameFieldDiv.childNodes];
+    highlight(
+      true,
+      NodesArray[rightTopItemNumber],
+      NodesArray[centralItemNumber],
+      NodesArray[gameFieldSideDoubleLength]
+    );
     victoryHandler();
   }
 };
@@ -106,11 +131,17 @@ const checkResult = () => {
 };
 
 export const gameFieldHandler = (e) => {
-  const sign = Player.active.sign;
   const cellNumber = e.target.dataset.cell;
-  addSignToCell(e, cellNumber, sign);
-  addSignToArr(cellNumber, sign);
-  movesNumber++;
-  checkResult();
-  Player.toggleActive(player1, player2);
+  const cellDataFromArray = cellArray[cellNumber - 1];
+  const checkIsItDataCell = e.target.hasAttribute('data-cell');
+
+  if (checkIsItDataCell && !cellDataFromArray) {
+    const sign = Player.active.sign;
+    addSignToCell(e, sign);
+    addSignToArr(cellNumber, sign);
+    movesNumber++;
+    checkResult();
+    Player.toggleActive(player1, player2);
+    highlightPlayer(Player.active, player1, player2);
+  }
 };
