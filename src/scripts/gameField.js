@@ -14,15 +14,11 @@ const cellArrayLength = 9,
 let movesNumber = 0;
 
 const addSignToArr = (cellNum, sign) => {
-  // if (!cellArray[cellNum - 1]) {
   cellArray[cellNum - 1] = sign;
-  // }
 };
 
 const addSignToCell = (e, sign) => {
-  // if (!cellArray[cellNum - 1]) {
   e.target.textContent = `${sign}`;
-  // }
 };
 
 export const resetCellArray = () => {
@@ -119,6 +115,7 @@ const checkSecondDiagonalVictory = () => {
 const checkDraw = () => {
   if (movesNumber === cellArrayLength) {
     displayResults.draw();
+    movesNumber = 0;
   }
 };
 
@@ -140,6 +137,7 @@ export const gameFieldHandler = (e) => {
     addSignToCell(e, sign);
     addSignToArr(cellNumber, sign);
     movesNumber++;
+    console.log(movesNumber);
     checkResult();
     Player.toggleActive(player1, player2);
     highlightPlayer(Player.active, player1, player2);
