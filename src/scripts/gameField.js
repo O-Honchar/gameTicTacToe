@@ -78,17 +78,13 @@ const checkFirstDiagonalVictory = () => {
     cellArray[0] === cellArray[cellArrayLength - 1] &&
     cellArray[0]
   ) {
-    console.log(`we find victory on diag # lt-rb`);
-    //
     const NodesArray = [...gameFieldDiv.childNodes];
-    console.log(NodesArray[0]);
     highlight(
       true,
       NodesArray[0],
       NodesArray[centralItemNumber],
       NodesArray[cellArrayLength - 1]
     );
-    //
     victoryHandler();
   }
 };
@@ -98,7 +94,13 @@ const checkSecondDiagonalVictory = () => {
     cellArray[rightTopItemNumber] === cellArray[gameFieldSideDoubleLength] &&
     cellArray[rightTopItemNumber]
   ) {
-    console.log(`we find victory on diag # rt-lb`);
+    const NodesArray = [...gameFieldDiv.childNodes];
+    highlight(
+      true,
+      NodesArray[rightTopItemNumber],
+      NodesArray[centralItemNumber],
+      NodesArray[gameFieldSideDoubleLength]
+    );
     victoryHandler();
   }
 };
