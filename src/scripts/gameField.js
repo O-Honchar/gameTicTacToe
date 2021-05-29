@@ -108,12 +108,14 @@ const checkResult = () => {
 };
 
 export const gameFieldHandler = (e) => {
-  const sign = Player.active.sign;
-  const cellNumber = e.target.dataset.cell;
-  addSignToCell(e, cellNumber, sign);
-  addSignToArr(cellNumber, sign);
-  movesNumber++;
-  checkResult();
-  Player.toggleActive(player1, player2);
-  highlightPlayer(Player.active, player1, player2);
+  if (e.target.hasAttribute('data-cell')) {
+    const sign = Player.active.sign;
+    const cellNumber = e.target.dataset.cell;
+    addSignToCell(e, cellNumber, sign);
+    addSignToArr(cellNumber, sign);
+    movesNumber++;
+    checkResult();
+    Player.toggleActive(player1, player2);
+    highlightPlayer(Player.active, player1, player2);
+  }
 };
