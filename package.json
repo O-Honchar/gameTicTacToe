@@ -1,5 +1,6 @@
 {
-  "name": "homework",
+  "homepage": "https://o-honchar.github.io/gameTicTacToe/dist",
+  "name": "gameTicTacToe",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

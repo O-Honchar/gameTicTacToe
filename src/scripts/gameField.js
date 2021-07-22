@@ -137,7 +137,7 @@ export const gameFieldHandler = (e) => {
     addSignToCell(e, sign);
     addSignToArr(cellNumber, sign);
     movesNumber++;
-    console.log(movesNumber);
+    // console.log(movesNumber);
     checkResult();
     Player.toggleActive(player1, player2);
     highlightPlayer(Player.active, player1, player2);
